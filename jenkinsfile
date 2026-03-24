@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone') {
+            steps {
+                git url: 'https://github.com/akashalternate/docky.git', branch: 'main'
+            }
+        }
+
+        stage('Docker Build & Run') {
+            steps {
+                sh '''
+                docker stop docky-container || true
+                docker rm docky-container || true
+                docker build -t docky-app .
+                docker run -d -p 8080:8080 --name docky-container docky-app
+                '''
+            }
+        }
+    }
+}
