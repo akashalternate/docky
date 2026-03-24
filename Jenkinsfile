@@ -9,12 +9,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
-            steps {
-                git url: 'https://github.com/akashalternate/docky.git', branch: 'main'
-            }
-        }
-
         stage('Docker Build') {
             steps {
                 sh 'docker build -t $IMAGE_NAME .'
@@ -37,10 +31,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Docker container deployed successfully!'
+            echo '✅ Success!'
         }
         failure {
-            echo '❌ Pipeline failed. Check logs.'
+            echo '❌ Failed!'
         }
     }
 }
