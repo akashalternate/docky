@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = 'docky-app'
         CONTAINER_NAME = 'docky-container'
-        PORT = '8080'
+        PORT = '8050'
     }
 
     stages {
